@@ -7,9 +7,7 @@
     { "source": "/sw.js", "destination": "/sw.js" },
     { "source": "/icon-192.png", "destination": "/icon-192.png" },
     { "source": "/icon-512.png", "destination": "/icon-512.png" },
-    { "source": "/macros/(.*)", "destination": "https://script.google.com/macros/$1" },
-    { "source": "/static/(.*)", "destination": "https://script.google.com/static/$1" },
-    { "source": "/(.*)", "destination": "/api/index" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
