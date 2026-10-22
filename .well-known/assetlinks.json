@@ -1,12 +1,10 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.productivity.tracker",
-      "sha256_cert_fingerprints": [
-        "PASTE_YOUR_PWABUILDER_SHA256_FINGERPRINT_HERE"
-      ]
-    }
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.plan_of_action.twa",
+    "sha256_cert_fingerprints": [
+      "0F:15:75:A0:CD:8F:64:82:F9:DC:F2:33:88:D8:54:3F:2C:02:A2:06:E5:ED:79:3C:57:54:14:8C:6C:7F:DB:DB"
+    ]
   }
-]
+}]
