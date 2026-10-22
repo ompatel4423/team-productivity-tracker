@@ -144,6 +144,314 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
+
+    /* Floating Action Toolkit Button */
+    #toolkit-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    #toolkit-btn:active {
+      transform: scale(0.95);
+    }
+
+    .badge-pill {
+      background: #0284C7;
+      color: #FFF;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    /* Toolkit Bottom Sheet / Modal */
+    #toolkit-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 950;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    #toolkit-modal.active {
+      display: flex;
+    }
+
+    .sheet-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px 24px 0 0;
+      padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+      animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .sheet-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    .sheet-close-btn {
+      background: #F1F5F9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 14px;
+      color: #64748B;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-tabs-custom {
+      display: flex;
+      background: #F1F5F9;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Tab 1: Reminder Controls */
+    .reminder-item {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reminder-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172A;
+      margin-bottom: 2px;
+    }
+
+    .reminder-info p {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .time-input {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      background: #FFF;
+      outline: none;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background-color: #CBD5E1;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #0284C7;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    .btn-action-sheet {
+      background: #0F172A;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    /* Tab 2: Draft Task Stash */
+    .stash-input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .stash-task-input {
+      flex: 3;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .stash-mins-input {
+      flex: 1.2;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      text-align: center;
+    }
+
+    .stash-add-btn {
+      background: #0284C7;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .stash-list {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .stash-row {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .stash-desc {
+      font-weight: 500;
+      color: #1E293B;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .stash-badge {
+      background: #E2E8F0;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+
+    .stash-del {
+      color: #EF4444;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .stash-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #F1F5F9;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -171,24 +479,287 @@
     ></iframe>
   </div>
 
+  <!-- Floating Toolkit Button -->
+  <button id="toolkit-btn" onclick="openToolkit()">
+    <span>⚡ Tools &amp; Drafts</span>
+    <span class="badge-pill" id="draft-count">0</span>
+  </button>
+
+  <!-- Toolkit Modal Sheet -->
+  <div id="toolkit-modal" onclick="if(event.target === this) closeToolkit()">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div class="sheet-title">Productivity Toolkit</div>
+        <button class="sheet-close-btn" onclick="closeToolkit()">✕</button>
+      </div>
+
+      <div class="nav-tabs-custom">
+        <button type="button" class="tab-btn active" id="tab-drafts" onclick="switchTab('drafts')">📝 Auto-Drafts</button>
+        <button type="button" class="tab-btn" id="tab-reminders" onclick="switchTab('reminders')">🔔 Reminders</button>
+      </div>
+
+      <!-- Tab 1: Auto-Drafts & Task Stash -->
+      <div id="view-drafts">
+        <div class="stash-input-group">
+          <input type="text" id="stash-task" class="stash-task-input" placeholder="Task details / milestone">
+          <input type="number" id="stash-mins" class="stash-mins-input" placeholder="Mins" min="0">
+          <button type="button" class="stash-add-btn" onclick="addDraftTask()">+ Add</button>
+        </div>
+
+        <div class="stash-list" id="stash-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="stash-footer">
+          <span>Stashed Total:</span>
+          <span id="stash-total" class="text-primary">0 mins (0h 0m)</span>
+        </div>
+
+        <div style="display:flex; gap: 8px;">
+          <button type="button" class="btn-action-sheet" style="flex:2; background:#0284C7;" onclick="copyDraftTasks()">📋 Copy All to Paste</button>
+          <button type="button" class="btn-action-sheet" style="flex:1; background:#EF4444;" onclick="clearDraftTasks()">Clear</button>
+        </div>
+      </div>
+
+      <!-- Tab 2: Reminders -->
+      <div id="view-reminders" style="display: none;">
+        <div class="reminder-item">
+          <div class="reminder-info">
+            <h4>Morning POA Alert</h4>
+            <p>Notify to submit planned day targets</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="time" id="poa-time" class="time-input" value="09:30" onchange="saveReminderSettings()">
+            <label class="toggle-switch">
+              <input type="checkbox" id="poa-toggle" onchange="toggleReminder('poa')">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="reminder-item">
+          <div class="reminder-info">
+            <h4>Evening Work Done Alert</h4>
+            <p>Notify to reconcile daily tasks</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="time" id="wd-time" class="time-input" value="19:00" onchange="saveReminderSettings()">
+            <label class="toggle-switch">
+              <input type="checkbox" id="wd-toggle" onchange="toggleReminder('wd')">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn-action-sheet" onclick="triggerTestNotification()">🔔 Send Test Notification</button>
+      </div>
+
+    </div>
+  </div>
+
   <script>
     const splash = document.getElementById('splash-screen');
     const iframe = document.getElementById('app-frame');
+
     try { iframe.credentialless = true; } catch(e) {}
 
+    // Fade out splash
     let loaded = false;
     function hideSplash() {
       if (!loaded) {
         loaded = true;
-        setTimeout(() => {
-          splash.classList.add('hidden');
-        }, 500);
+        setTimeout(() => splash.classList.add('hidden'), 500);
       }
     }
-
     iframe.addEventListener('load', hideSplash);
     setTimeout(hideSplash, 6000);
 
+    // ==========================================
+    // TOOLKIT DRAWER LOGIC
+    // ==========================================
+    function openToolkit() {
+      document.getElementById('toolkit-modal').classList.add('active');
+    }
+    function closeToolkit() {
+      document.getElementById('toolkit-modal').classList.remove('active');
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tab-drafts').classList.toggle('active', tab === 'drafts');
+      document.getElementById('tab-reminders').classList.toggle('active', tab === 'reminders');
+      document.getElementById('view-drafts').style.display = tab === 'drafts' ? 'block' : 'none';
+      document.getElementById('view-reminders').style.display = tab === 'reminders' ? 'block' : 'none';
+    }
+
+    // ==========================================
+    // AUTO-DRAFT TASK STASH
+    // ==========================================
+    let draftTasks = JSON.parse(localStorage.getItem('poa_draft_tasks') || '[]');
+
+    function renderDrafts() {
+      const list = document.getElementById('stash-list');
+      list.innerHTML = '';
+      let totalMins = 0;
+
+      if (draftTasks.length === 0) {
+        list.innerHTML = '<div style="text-align:center; padding:16px; color:#94A3B8; font-size:12px; font-style:italic;">No stashed tasks. Jot down your work here anytime!</div>';
+      } else {
+        draftTasks.forEach((item, idx) => {
+          totalMins += parseInt(item.mins, 10) || 0;
+          const row = document.createElement('div');
+          row.className = 'stash-row';
+          row.innerHTML = `
+            <span class="stash-desc">${item.task}</span>
+            <span class="stash-badge">${item.mins}m</span>
+            <button class="stash-del" onclick="deleteDraftTask(${idx})">✕</button>
+          `;
+          list.appendChild(row);
+        });
+      }
+
+      const h = Math.floor(totalMins / 60);
+      const m = totalMins % 60;
+      document.getElementById('stash-total').innerText = `${totalMins} mins (${h}h ${m}m)`;
+      document.getElementById('draft-count').innerText = draftTasks.length;
+      localStorage.setItem('poa_draft_tasks', JSON.stringify(draftTasks));
+    }
+
+    function addDraftTask() {
+      const taskInput = document.getElementById('stash-task');
+      const minsInput = document.getElementById('stash-mins');
+      const task = taskInput.value.trim();
+      const mins = minsInput.value.trim() || '0';
+
+      if (!task) {
+        alert('Please enter a task description.');
+        return;
+      }
+
+      draftTasks.push({ task, mins });
+      taskInput.value = '';
+      minsInput.value = '';
+      renderDrafts();
+    }
+
+    function deleteDraftTask(idx) {
+      draftTasks.splice(idx, 1);
+      renderDrafts();
+    }
+
+    function clearDraftTasks() {
+      if (confirm('Clear all stashed draft tasks?')) {
+        draftTasks = [];
+        renderDrafts();
+      }
+    }
+
+    function copyDraftTasks() {
+      if (draftTasks.length === 0) {
+        alert('No draft tasks to copy.');
+        return;
+      }
+      const text = draftTasks.map(t => `• ${t.task} (${t.mins} mins)`).join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied all draft tasks to clipboard!');
+      });
+    }
+
+    renderDrafts();
+
+    // ==========================================
+    // NOTIFICATION REMINDERS
+    // ==========================================
+    function checkNotificationPermission() {
+      if ('Notification' in window && Notification.permission !== 'granted') {
+        Notification.requestPermission();
+      }
+    }
+
+    function toggleReminder(type) {
+      checkNotificationPermission();
+      saveReminderSettings();
+    }
+
+    function saveReminderSettings() {
+      const settings = {
+        poaEnabled: document.getElementById('poa-toggle').checked,
+        poaTime: document.getElementById('poa-time').value,
+        wdEnabled: document.getElementById('wd-toggle').checked,
+        wdTime: document.getElementById('wd-time').value,
+      };
+      localStorage.setItem('reminder_settings', JSON.stringify(settings));
+    }
+
+    function loadReminderSettings() {
+      const saved = JSON.parse(localStorage.getItem('reminder_settings') || '{}');
+      if (saved.poaEnabled !== undefined) document.getElementById('poa-toggle').checked = saved.poaEnabled;
+      if (saved.poaTime) document.getElementById('poa-time').value = saved.poaTime;
+      if (saved.wdEnabled !== undefined) document.getElementById('wd-toggle').checked = saved.wdEnabled;
+      if (saved.wdTime) document.getElementById('wd-time').value = saved.wdTime;
+    }
+    loadReminderSettings();
+
+    function triggerTestNotification() {
+      if (!('Notification' in window)) {
+        alert('Notifications not supported in this browser.');
+        return;
+      }
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.ready.then(reg => {
+              reg.showNotification('🌅 Morning Plan of Action', {
+                body: "Don't forget to submit today's POA targets!",
+                icon: '/icon-192.png',
+                badge: '/icon-192.png',
+                vibrate: [200, 100, 200]
+              });
+            });
+          } else {
+            new Notification('🌅 Morning Plan of Action', {
+              body: "Don't forget to submit today's POA targets!",
+              icon: '/icon-192.png'
+            });
+          }
+        } else {
+          alert('Please allow notification permission in your phone settings.');
+        }
+      });
+    }
+
+    // Background reminder checker (runs every minute while app is open)
+    setInterval(() => {
+      const saved = JSON.parse(localStorage.getItem('reminder_settings') || '{}');
+      if (!saved) return;
+
+      const now = new Date();
+      const currentH = String(now.getHours()).padStart(2, '0');
+      const currentM = String(now.getMinutes()).padStart(2, '0');
+      const currentTime = `${currentH}:${currentM}`;
+
+      if (saved.poaEnabled && saved.poaTime === currentTime) {
+        triggerReminderNotification('🌅 Morning POA Reminder', "Time to submit your daily Plan of Action targets!");
+      }
+      if (saved.wdEnabled && saved.wdTime === currentTime) {
+        triggerReminderNotification('🌙 Evening Work Done Reminder', "Time to reconcile your actual executed minutes!");
+      }
+    }, 60000);
+
+    function triggerReminderNotification(title, message) {
+      if ('Notification' in window && Notification.permission === 'granted') {
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.ready.then(reg => {
+            reg.showNotification(title, {
+              body: message,
+              icon: '/icon-192.png',
+              badge: '/icon-192.png'
+            });
+          });
+        }
+      }
+    }
+
+    // Register Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});

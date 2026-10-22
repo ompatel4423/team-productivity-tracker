@@ -1,4 +1,4 @@
-const CACHE_NAME = 'productivity-tracker-shell-v4';
+const CACHE_NAME = 'productivity-tracker-shell-v5';
 const ASSETS_TO_CACHE = [
   '/manifest.json',
   '/icon-192.png',
@@ -44,6 +44,25 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cached) => {
       return cached || fetch(event.request);
+    })
+  );
+});
+
+// Handle clicking notifications
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const targetUrl = event.notification.data?.url || '/';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if (client.url.includes(self.location.origin) && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl);
+      }
     })
   );
 });

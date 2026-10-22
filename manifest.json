@@ -27,5 +27,31 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Morning POA",
+      "short_name": "Morning POA",
+      "description": "Open Morning Plan of Action",
+      "url": "/?view=poa",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Work Done Logger",
+      "short_name": "Work Done",
+      "description": "Open Evening Work Done Logger",
+      "url": "/?view=wd",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }
