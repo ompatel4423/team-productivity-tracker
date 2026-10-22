@@ -1,29 +1,24 @@
-const CACHE_NAME = 'productivity-tracker-shell-v1';
+const CACHE_NAME = 'productivity-tracker-shell-v4';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png'
 ];
 
-// Install: Cache essential shell assets
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
   );
 });
 
-// Activate: Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
+        keys.map((k) => {
+          if (k !== CACHE_NAME) {
+            return caches.delete(k);
           }
         })
       );
@@ -31,43 +26,24 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch: Stale-while-revalidate for local assets, network-first for navigation
 self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-
-  // If request is from same origin, serve from cache with network fallback
-  if (url.origin === location.origin) {
+  // Navigation requests: always go to network first
+  if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        if (cachedResponse) {
-          // Revalidate in background
-          fetch(event.request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, networkResponse);
-              });
-            }
-          }).catch(() => {});
-          return cachedResponse;
-        }
-        return fetch(event.request);
+      fetch(event.request).catch(() => {
+        return new Response(
+          '<!DOCTYPE html><html><body style="font-family:sans-serif;text-align:center;padding:40px;"><h2>Offline</h2><p>Please check your connection and reload.</p></body></html>',
+          { headers: { 'Content-Type': 'text/html' } }
+        );
       })
     );
     return;
   }
 
-  // Cross-origin requests (e.g. Google Apps Script) go straight to network
+  // Static assets: cache with network fallback
   event.respondWith(
-    fetch(event.request).catch(() => {
-      // Offline fallback for navigations
-      if (event.request.mode === 'navigate') {
-        return caches.match('/index.html');
-      }
-      return new Response('Network error occurred', {
-        status: 503,
-        statusText: 'Service Unavailable',
-        headers: new Headers({ 'Content-Type': 'text/plain' })
-      });
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request);
     })
   );
 });

@@ -2,12 +2,14 @@
   "version": 2,
   "cleanUrls": false,
   "rewrites": [
-    { "source": "/sw.js", "destination": "/sw.js" },
+    { "source": "/.well-known/assetlinks.json", "destination": "/.well-known/assetlinks.json" },
     { "source": "/manifest.json", "destination": "/manifest.json" },
+    { "source": "/sw.js", "destination": "/sw.js" },
     { "source": "/icon-192.png", "destination": "/icon-192.png" },
     { "source": "/icon-512.png", "destination": "/icon-512.png" },
-    { "source": "/.well-known/assetlinks.json", "destination": "/.well-known/assetlinks.json" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/macros/(.*)", "destination": "https://script.google.com/macros/$1" },
+    { "source": "/static/(.*)", "destination": "https://script.google.com/static/$1" },
+    { "source": "/(.*)", "destination": "/api/index" }
   ],
   "headers": [
     {
@@ -46,19 +48,6 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
         }
       ]
     }
