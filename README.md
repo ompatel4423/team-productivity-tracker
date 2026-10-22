@@ -27,11 +27,7 @@ This repository contains the standalone, production-ready Progressive Web App (P
 ### Step 1: Push to GitHub
 1. Open terminal inside this folder:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit for Team Productivity Tracker PWA"
-   git branch -M main
-   git remote add origin https://github.com/<YOUR_USERNAME>/team-productivity-tracker.git
+   git remote add origin https://github.com/ompatel4423/team-productivity-tracker.git
    git push -u origin main
    ```
 
