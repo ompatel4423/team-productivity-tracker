@@ -1,4 +1,4 @@
-const CACHE_NAME = 'productivity-tracker-shell-v5';
+const CACHE_NAME = 'productivity-tracker-shell-v6';
 const ASSETS_TO_CACHE = [
   '/manifest.json',
   '/icon-192.png',

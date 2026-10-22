@@ -148,14 +148,14 @@
     /* Floating Action Toolkit Button */
     #toolkit-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: calc(16px + env(safe-area-inset-right, 0px));
       z-index: 100;
       background: #0F172A;
       color: #FFFFFF;
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 999px;
-      padding: 10px 18px;
+      padding: 10px 16px;
       font-size: 13px;
       font-weight: 600;
       display: flex;
@@ -178,6 +178,81 @@
       padding: 2px 6px;
       border-radius: 999px;
       font-weight: 700;
+    }
+
+    /* Floating Quick-Copy Bar (Method 2 1-Tap Login Assistant) */
+    .quick-copy-bar {
+      position: fixed;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      left: calc(16px + env(safe-area-inset-left, 0px));
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px 6px 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quick-bar-icon {
+      font-size: 13px;
+      color: #38BDF8;
+      display: flex;
+      align-items: center;
+    }
+
+    .quick-bar-pill {
+      background: #1E293B;
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quick-bar-pill:active {
+      transform: scale(0.95);
+    }
+
+    .quick-bar-pill.copied {
+      background: #059669 !important;
+      color: #FFFFFF !important;
+      border-color: #10B981 !important;
+    }
+
+    .quick-bar-dismiss {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 13px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 2px;
+    }
+
+    .quick-bar-dismiss:active {
+      color: #FFFFFF;
     }
 
     /* Toolkit Bottom Sheet / Modal */
@@ -251,8 +326,8 @@
 
     .tab-btn {
       flex: 1;
-      padding: 10px;
-      font-size: 13px;
+      padding: 9px 4px;
+      font-size: 12px;
       font-weight: 600;
       border: none;
       border-radius: 8px;
@@ -260,6 +335,7 @@
       color: #64748B;
       cursor: pointer;
       transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .tab-btn.active {
@@ -452,6 +528,257 @@
       color: #0F172A;
       margin-bottom: 12px;
     }
+
+    /* Tab: Quick Login Vault (Method 2) */
+    .vault-info-banner {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .vault-info-icon {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .vault-info-text {
+      font-size: 12.5px;
+      color: #0369A1;
+      line-height: 1.45;
+    }
+
+    .vault-form-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group-custom {
+      margin-bottom: 12px;
+    }
+
+    .form-group-custom:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label-custom {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .form-input-custom {
+      width: 100%;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #0F172A;
+      background: #FFFFFF;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input-custom:focus {
+      border-color: #0284C7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .pass-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .pass-wrapper .form-input-custom {
+      padding-right: 42px;
+    }
+
+    .btn-toggle-eye {
+      position: absolute;
+      right: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      font-size: 16px;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+
+    .btn-save-credentials {
+      flex: 2;
+      background: #0284C7;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 11px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-save-credentials:active {
+      background: #0369A1;
+    }
+
+    .btn-clear-credentials {
+      flex: 1;
+      background: #F1F5F9;
+      color: #64748B;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 11px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-clear-credentials:active {
+      background: #E2E8F0;
+    }
+
+    .vault-actions-area {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .vault-section-heading {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      margin-bottom: 10px;
+    }
+
+    .action-copy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .btn-fast-copy {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      padding: 12px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .btn-fast-copy:active {
+      border-color: #0284C7;
+      transform: scale(0.98);
+      background: #F0F9FF;
+    }
+
+    .btn-fast-copy.copied {
+      background: #ECFDF5 !important;
+      border-color: #10B981 !important;
+      color: #065F46 !important;
+    }
+
+    .fast-copy-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .fast-copy-details {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .fast-copy-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 2px;
+    }
+
+    .fast-copy-preview {
+      font-size: 11px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .quickbar-toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .quickbar-toggle-info {
+      display: flex;
+      flex-direction: column;
+      padding-right: 12px;
+    }
+
+    .quickbar-toggle-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+    }
+
+    .quickbar-toggle-desc {
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.35;
+    }
+
+    /* Native-Style Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+      max-width: 90vw;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -479,6 +806,21 @@
     ></iframe>
   </div>
 
+  <!-- Floating Quick-Copy Bar (Method 2: 1-Tap Login Assistant) -->
+  <div id="quick-copy-bar" class="quick-copy-bar" style="display: none;">
+    <span class="quick-bar-icon">⚡</span>
+    <button type="button" class="quick-bar-pill" id="quick-pill-email" onclick="copySavedEmail(this)">
+      <span>📧 Email</span>
+    </button>
+    <button type="button" class="quick-bar-pill" id="quick-pill-pass" onclick="copySavedPass(this)">
+      <span>🔑 Pass</span>
+    </button>
+    <button type="button" class="quick-bar-dismiss" onclick="hideQuickBar()" title="Hide floating bar">✕</button>
+  </div>
+
+  <!-- Native Toast Notification -->
+  <div id="toast-msg" class="toast-notification"></div>
+
   <!-- Floating Toolkit Button -->
   <button id="toolkit-btn" onclick="openToolkit()">
     <span>⚡ Tools &amp; Drafts</span>
@@ -494,12 +836,76 @@
       </div>
 
       <div class="nav-tabs-custom">
-        <button type="button" class="tab-btn active" id="tab-drafts" onclick="switchTab('drafts')">📝 Auto-Drafts</button>
+        <button type="button" class="tab-btn active" id="tab-login" onclick="switchTab('login')">🔐 Login Vault</button>
+        <button type="button" class="tab-btn" id="tab-drafts" onclick="switchTab('drafts')">📝 Drafts</button>
         <button type="button" class="tab-btn" id="tab-reminders" onclick="switchTab('reminders')">🔔 Reminders</button>
       </div>
 
-      <!-- Tab 1: Auto-Drafts & Task Stash -->
-      <div id="view-drafts">
+      <!-- Tab 1: Quick Login Vault (Method 2) -->
+      <div id="view-login">
+        <div class="vault-info-banner">
+          <div class="vault-info-icon">💡</div>
+          <div class="vault-info-text">
+            Enter your login once below. Use <strong>1-Tap Fast Copy</strong> or the floating screen pill to instantly paste your email & password without retyping!
+          </div>
+        </div>
+
+        <div class="vault-form-card">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="vault-email">Email or Username</label>
+            <input type="text" id="vault-email" class="form-input-custom" placeholder="e.g. xyz@gmail.com" autocomplete="username">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="vault-pass">Password or PIN</label>
+            <div class="pass-wrapper">
+              <input type="password" id="vault-pass" class="form-input-custom" placeholder="e.g. 1234" autocomplete="current-password">
+              <button type="button" class="btn-toggle-eye" onclick="togglePassVisibility()" id="btn-toggle-eye" title="Show/Hide Password">👁️</button>
+            </div>
+          </div>
+
+          <div style="display:flex; gap: 8px; margin-top: 14px;">
+            <button type="button" class="btn-save-credentials" onclick="saveCredentials()">💾 Save Login Details</button>
+            <button type="button" class="btn-clear-credentials" onclick="clearCredentials()">Clear</button>
+          </div>
+        </div>
+
+        <!-- Fast 1-Tap Copy Actions Area (appears when credentials are saved) -->
+        <div id="vault-actions-area" class="vault-actions-area" style="display: none;">
+          <div class="vault-section-heading">1-Tap Fast Copy</div>
+          <div class="action-copy-grid">
+            <button type="button" class="btn-fast-copy" id="btn-copy-email-drawer" onclick="copySavedEmail(this)">
+              <div class="fast-copy-icon">📧</div>
+              <div class="fast-copy-details">
+                <div class="fast-copy-title">Copy Email</div>
+                <div class="fast-copy-preview" id="preview-email">...</div>
+              </div>
+            </button>
+
+            <button type="button" class="btn-fast-copy" id="btn-copy-pass-drawer" onclick="copySavedPass(this)">
+              <div class="fast-copy-icon">🔑</div>
+              <div class="fast-copy-details">
+                <div class="fast-copy-title">Copy Password</div>
+                <div class="fast-copy-preview" id="preview-pass">••••••••</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="quickbar-toggle-row">
+            <div class="quickbar-toggle-info">
+              <span class="quickbar-toggle-title">Floating Quick-Copy Pill</span>
+              <span class="quickbar-toggle-desc">Show 1-tap copy buttons on your main screen</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-quickbar" onchange="toggleQuickBarSetting(this.checked)">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Auto-Drafts & Task Stash -->
+      <div id="view-drafts" style="display: none;">
         <div class="stash-input-group">
           <input type="text" id="stash-task" class="stash-task-input" placeholder="Task details / milestone">
           <input type="number" id="stash-mins" class="stash-mins-input" placeholder="Mins" min="0">
@@ -585,11 +991,194 @@
     }
 
     function switchTab(tab) {
+      document.getElementById('tab-login').classList.toggle('active', tab === 'login');
       document.getElementById('tab-drafts').classList.toggle('active', tab === 'drafts');
       document.getElementById('tab-reminders').classList.toggle('active', tab === 'reminders');
+      document.getElementById('view-login').style.display = tab === 'login' ? 'block' : 'none';
       document.getElementById('view-drafts').style.display = tab === 'drafts' ? 'block' : 'none';
       document.getElementById('view-reminders').style.display = tab === 'reminders' ? 'block' : 'none';
     }
+
+    // ==========================================
+    // TOAST & CLIPBOARD HELPER
+    // ==========================================
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast-msg');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    function copyToClipboard(text, successMsg, btnElement, originalHtml) {
+      if (!text) {
+        showToast('⚠️ No saved text! Open Login Vault to save.');
+        openToolkit();
+        switchTab('login');
+        return;
+      }
+
+      function onSuccess() {
+        showToast(successMsg);
+        if ('vibrate' in navigator) {
+          try { navigator.vibrate(40); } catch(e) {}
+        }
+        if (btnElement && originalHtml) {
+          btnElement.innerHTML = '<span>✓ Copied!</span>';
+          btnElement.classList.add('copied');
+          setTimeout(() => {
+            btnElement.innerHTML = originalHtml;
+            btnElement.classList.remove('copied');
+          }, 1500);
+        }
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onSuccess).catch(() => {
+          fallbackCopyText(text, onSuccess);
+        });
+      } else {
+        fallbackCopyText(text, onSuccess);
+      }
+    }
+
+    function fallbackCopyText(text, onSuccess) {
+      try {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        onSuccess();
+      } catch(err) {
+        prompt('Copy manually:', text);
+      }
+    }
+
+    // ==========================================
+    // QUICK LOGIN VAULT LOGIC (METHOD 2)
+    // ==========================================
+    let savedEmail = localStorage.getItem('poa_vault_email') || '';
+    let savedPass = localStorage.getItem('poa_vault_pass') || '';
+    let quickBarEnabled = localStorage.getItem('poa_quickbar_enabled') !== 'false';
+    let isPassVisible = false;
+
+    function initLoginVault() {
+      const emailInput = document.getElementById('vault-email');
+      const passInput = document.getElementById('vault-pass');
+      const quickBarToggle = document.getElementById('toggle-quickbar');
+
+      if (emailInput) {
+        emailInput.value = savedEmail;
+        emailInput.addEventListener('input', autoSaveCredentials);
+      }
+      if (passInput) {
+        passInput.value = savedPass;
+        passInput.addEventListener('input', autoSaveCredentials);
+      }
+      if (quickBarToggle) {
+        quickBarToggle.checked = quickBarEnabled;
+      }
+
+      updateVaultUI();
+    }
+
+    function updateVaultUI() {
+      const actionsArea = document.getElementById('vault-actions-area');
+      const previewEmail = document.getElementById('preview-email');
+      const previewPass = document.getElementById('preview-pass');
+      const quickBar = document.getElementById('quick-copy-bar');
+
+      const hasCreds = Boolean(savedEmail || savedPass);
+
+      if (hasCreds) {
+        if (actionsArea) actionsArea.style.display = 'block';
+        if (previewEmail) previewEmail.innerText = savedEmail || '(Not set)';
+        if (previewPass) previewPass.innerText = savedPass ? '••••••••' : '(Not set)';
+        
+        if (quickBar) {
+          quickBar.style.display = quickBarEnabled ? 'flex' : 'none';
+        }
+      } else {
+        if (actionsArea) actionsArea.style.display = 'none';
+        if (quickBar) quickBar.style.display = 'none';
+      }
+    }
+
+    function autoSaveCredentials() {
+      const email = document.getElementById('vault-email').value.trim();
+      const pass = document.getElementById('vault-pass').value.trim();
+      savedEmail = email;
+      savedPass = pass;
+      localStorage.setItem('poa_vault_email', savedEmail);
+      localStorage.setItem('poa_vault_pass', savedPass);
+      updateVaultUI();
+    }
+
+    function saveCredentials() {
+      autoSaveCredentials();
+      if (!savedEmail && !savedPass) {
+        showToast('⚠️ Please enter an email or password to save.');
+        return;
+      }
+      showToast('✅ Login details saved! 1-Tap copy is ready.');
+    }
+
+    function clearCredentials() {
+      if (confirm('Clear saved login details?')) {
+        savedEmail = '';
+        savedPass = '';
+        localStorage.removeItem('poa_vault_email');
+        localStorage.removeItem('poa_vault_pass');
+
+        document.getElementById('vault-email').value = '';
+        document.getElementById('vault-pass').value = '';
+
+        updateVaultUI();
+        showToast('🗑️ Login details cleared.');
+      }
+    }
+
+    function togglePassVisibility() {
+      const passInput = document.getElementById('vault-pass');
+      const btn = document.getElementById('btn-toggle-eye');
+      isPassVisible = !isPassVisible;
+      passInput.type = isPassVisible ? 'text' : 'password';
+      btn.innerText = isPassVisible ? '🙈' : '👁️';
+    }
+
+    function toggleQuickBarSetting(enabled) {
+      quickBarEnabled = enabled;
+      localStorage.setItem('poa_quickbar_enabled', enabled ? 'true' : 'false');
+      updateVaultUI();
+      showToast(enabled ? 'Floating Quick Pill enabled on screen' : 'Floating Quick Pill hidden');
+    }
+
+    function hideQuickBar() {
+      const quickBar = document.getElementById('quick-copy-bar');
+      if (quickBar) quickBar.style.display = 'none';
+      showToast('Floating pill minimized. Open Tools & Drafts to restore.');
+    }
+
+    function copySavedEmail(btn) {
+      const orig = btn ? btn.innerHTML : '';
+      copyToClipboard(savedEmail, '📧 Email copied! Tap to paste in app', btn, orig);
+    }
+
+    function copySavedPass(btn) {
+      const orig = btn ? btn.innerHTML : '';
+      copyToClipboard(savedPass, '🔑 Password copied! Tap to paste in app', btn, orig);
+    }
+
+    initLoginVault();
 
     // ==========================================
     // AUTO-DRAFT TASK STASH
@@ -655,13 +1244,11 @@
 
     function copyDraftTasks() {
       if (draftTasks.length === 0) {
-        alert('No draft tasks to copy.');
+        showToast('⚠️ No draft tasks to copy.');
         return;
       }
       const text = draftTasks.map(t => `• ${t.task} (${t.mins} mins)`).join('\n');
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied all draft tasks to clipboard!');
-      });
+      copyToClipboard(text, '📋 All draft tasks copied to clipboard!');
     }
 
     renderDrafts();
